@@ -35,6 +35,8 @@ class Cat extends Animal with Furry with FourLegged{
 }
 
 
+
+
 //可堆叠式修改——super的调用顺序
 trait Base1 {
   def print() { println("Base1") }
@@ -63,4 +65,16 @@ object TraitExample extends App{
   println(">>>>>>>>>>>>>>>>>>>>>>>>PART2>>>>>>>>>>>>>>>>>>>>>")
 
   (new C).print
+
+  println(">>>>>>>>>>>>>>>>>>>>>>>>PART3>>>>>>>>>>>>>>>>>>>>>")
+
+  //看一下下面的情况
+  class C2 extends Base2
+  with A
+  with Base3
+  with B {
+    override def print() { println("C2"); super.print() }
+  }
+
+  (new C2).print
 }
